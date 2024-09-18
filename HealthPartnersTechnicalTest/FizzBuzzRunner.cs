@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace HealthPartnersTechnicalTest
 {
-    internal class FizzBuzzRunner
+    public class FizzBuzzRunner
     {
-        public List<string> ExecuteFizzBuzz()
+        public static List<string> ExecuteFizzBuzz()
         {
             return new List<string>();
         }
