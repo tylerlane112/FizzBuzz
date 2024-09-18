@@ -24,5 +24,17 @@ namespace HealthPartnersTechnicalTest
 
             return value.ToString();
         }
+
+        [Divider(5)]
+        public static string ResolveBuzz(int value)
+        {
+            return "";
+        }
+
+        [Divider(15)]
+        public static string ResolveFizzBuzz(int value)
+        {
+            return "";
+        }
     }
 }
