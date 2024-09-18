@@ -28,13 +28,31 @@ namespace HealthPartnersTechnicalTest
         [Divider(5)]
         public static string ResolveBuzz(int value)
         {
-            return "";
+            var currentMethod = MethodBase.GetCurrentMethod();
+            var dividerAttribute = (DividerAttribute)currentMethod.
+                                    GetCustomAttributes(typeof(DividerAttribute), false)[0];
+
+            if (value % dividerAttribute.Divider == 0)
+            {
+                return "Buzz";
+            }
+
+            return value.ToString();
         }
 
         [Divider(15)]
         public static string ResolveFizzBuzz(int value)
         {
-            return "";
+            var currentMethod = MethodBase.GetCurrentMethod();
+            var dividerAttribute = (DividerAttribute)currentMethod.
+                                    GetCustomAttributes(typeof(DividerAttribute), false)[0];
+
+            if (value % dividerAttribute.Divider == 0)
+            {
+                return "FizzBuzz";
+            }
+
+            return value.ToString();
         }
     }
 }
