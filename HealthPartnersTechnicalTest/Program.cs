@@ -6,10 +6,6 @@ namespace HealthPartnersTechnicalTest
     {
         static void Main(string[] args)
         {
-            var dividerMethods = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(x => x.GetTypes())
-                .SelectMany(t => t.GetMethods())
-                .Where(m => m.GetCustomAttributes(typeof(DividerAttribute), false).Any());
 
         }
     }

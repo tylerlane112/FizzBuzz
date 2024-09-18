@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HealthPartnersTechnicalTest.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,31 @@ namespace HealthPartnersTechnicalTest
     {
         public static List<string> ExecuteFizzBuzz()
         {
-            return new List<string>();
-        }
+            var returnList = new List<string>();
 
+            var dividerMethods = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .SelectMany(t => t.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(DividerAttribute), false).Any());
+
+            for (int i = 1; i <= 100; i++)
+            {
+                var dividerMethod = dividerMethods.FirstOrDefault(x => i % x.GetCustomAttributes(false)
+                                                  .OfType<DividerAttribute>()
+                                                  .First().Divider == 0);
+
+                if (dividerMethod == null)
+                {
+                    returnList.Add(i.ToString());
+                    continue;
+                }
+
+                var result = dividerMethod.Invoke(new FizzBuzzResolver(), new object[] { i }) as string;
+                returnList.Add(result);
+            }
+
+            return returnList;
+
+        }
     }
 }
