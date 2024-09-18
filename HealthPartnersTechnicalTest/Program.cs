@@ -6,7 +6,12 @@ namespace HealthPartnersTechnicalTest
     {
         static void Main(string[] args)
         {
+            var fizzBuzzResult = FizzBuzzRunner.ExecuteFizzBuzz();
 
+            foreach (var result in fizzBuzzResult)
+            {
+                Console.WriteLine(result);
+            }
         }
     }
 }

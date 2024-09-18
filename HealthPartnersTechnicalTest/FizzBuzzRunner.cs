@@ -16,7 +16,8 @@ namespace HealthPartnersTechnicalTest
             var dividerMethods = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(x => x.GetTypes())
                 .SelectMany(t => t.GetMethods())
-                .Where(m => m.GetCustomAttributes(typeof(DividerAttribute), false).Any());
+                .Where(m => m.GetCustomAttributes(typeof(DividerAttribute), false).Any())
+                .OrderByDescending(m1 => m1.GetCustomAttributes(false).OfType<DividerAttribute>().First().Divider);
 
             for (int i = 1; i <= 100; i++)
             {
