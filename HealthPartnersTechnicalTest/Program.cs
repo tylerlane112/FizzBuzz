@@ -1,10 +1,16 @@
-﻿namespace HealthPartnersTechnicalTest
+﻿using HealthPartnersTechnicalTest.Attributes;
+
+namespace HealthPartnersTechnicalTest
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var dividerMethods = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(x => x.GetTypes())
+                .SelectMany(t => t.GetMethods())
+                .Where(m => m.GetCustomAttributes(typeof(DividerAttribute), false).Any());
+
         }
     }
 }
