@@ -13,10 +13,7 @@ namespace HealthPartnersTechnicalTest
         [Divider(3)]
         public static string ResolveFizz(int value)
         {
-            var currentMethod = MethodBase.GetCurrentMethod();
-            var dividerAttribute = (DividerAttribute)currentMethod.
-                                    GetCustomAttributes(typeof(DividerAttribute), false)[0];
-
+            var dividerAttribute = GetDividerAttribute(MethodBase.GetCurrentMethod());
             if (value % dividerAttribute.Divider == 0)
             {
                 return "Fizz";
@@ -28,10 +25,7 @@ namespace HealthPartnersTechnicalTest
         [Divider(5)]
         public static string ResolveBuzz(int value)
         {
-            var currentMethod = MethodBase.GetCurrentMethod();
-            var dividerAttribute = (DividerAttribute)currentMethod.
-                                    GetCustomAttributes(typeof(DividerAttribute), false)[0];
-
+            var dividerAttribute = GetDividerAttribute(MethodBase.GetCurrentMethod());
             if (value % dividerAttribute.Divider == 0)
             {
                 return "Buzz";
@@ -43,16 +37,18 @@ namespace HealthPartnersTechnicalTest
         [Divider(15)]
         public static string ResolveFizzBuzz(int value)
         {
-            var currentMethod = MethodBase.GetCurrentMethod();
-            var dividerAttribute = (DividerAttribute)currentMethod.
-                                    GetCustomAttributes(typeof(DividerAttribute), false)[0];
-
+            var dividerAttribute = GetDividerAttribute(MethodBase.GetCurrentMethod());
             if (value % dividerAttribute.Divider == 0)
             {
                 return "FizzBuzz";
             }
 
             return value.ToString();
+        }
+
+        private static DividerAttribute GetDividerAttribute(MethodBase? methodBase)
+        {
+            return (DividerAttribute)methodBase.GetCustomAttributes(typeof(DividerAttribute), false)[0];
         }
     }
 }
