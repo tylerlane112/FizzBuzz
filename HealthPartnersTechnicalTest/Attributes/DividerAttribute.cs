@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace HealthPartnersTechnicalTest.Attributes
 {
+    [AttributeUsage(AttributeTargets.Method)]
     public class DividerAttribute : Attribute
     {
         public int Divider;
